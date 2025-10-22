@@ -4,8 +4,9 @@ import { AccountingService } from './accountingService';
 
 export class ChatGPTService {
   private openai: OpenAI;
-  private conversationHistory: Map<string, OpenAI.Chat.ChatCompletionMessageParam[]>;
+  private conversationHistory: Map<string, { messages: OpenAI.Chat.ChatCompletionMessageParam[]; lastActivity: number }>;
   private accountingService: AccountingService;
+  private readonly SESSION_TIMEOUT = 3 * 60 * 1000; // 3 dakika
 
   constructor() {
     this.openai = new OpenAI({
@@ -13,18 +14,36 @@ export class ChatGPTService {
     });
     this.conversationHistory = new Map();
     this.accountingService = new AccountingService();
+
+    // Her 1 dakikada bir eski session'ları temizle
+    setInterval(() => this.cleanupOldSessions(), 60 * 1000);
+  }
+
+  private cleanupOldSessions(): void {
+    const now = Date.now();
+    for (const [userId, session] of this.conversationHistory.entries()) {
+      if (now - session.lastActivity > this.SESSION_TIMEOUT) {
+        this.conversationHistory.delete(userId);
+        console.log(`Session expired for user: ${userId}`);
+      }
+    }
   }
 
   async getResponse(userId: string, message: string): Promise<string> {
     try {
-      // Get or initialize conversation history for this user
-      let history = this.conversationHistory.get(userId);
-      if (!history) {
+      const now = Date.now();
+
+      // Get or initialize conversation session for this user
+      let session = this.conversationHistory.get(userId);
+
+      // Session yoksa veya süresi dolmuşsa yeni session başlat
+      if (!session || (now - session.lastActivity > this.SESSION_TIMEOUT)) {
         const accountingContext = this.accountingService.getDataContext();
-        history = [
-          {
-            role: 'system',
-            content: `Sen Tekno Elektronik Ticaret Ltd. Şti. firmasının muhasebe asistanısın. WhatsApp üzerinden işletme sahiplerine muhasebe verileri hakkında bilgi veriyorsun.
+        session = {
+          messages: [
+            {
+              role: 'system',
+              content: `Sen Tekno Elektronik Ticaret Ltd. Şti. firmasının muhasebe asistanısın. WhatsApp üzerinden işletme sahiplerine muhasebe verileri hakkında bilgi veriyorsun.
 
 Firma Bilgileri ve Özet:
 ${accountingContext}
@@ -35,6 +54,7 @@ GÖREVLER:
 - Cevapları kısa ve öz tut (WhatsApp için uygun)
 - Sayıları Türk Lirası formatında göster
 - Gerekirse emoji kullan ama abartma
+- Önceki mesajlardaki context'i hatırla ve ona göre cevap ver
 
 ÖNEMLİ İLETİŞİM KURALLARI:
 - Matematiksel formül KULLANMA (LaTeX, \[, \] gibi)
@@ -42,6 +62,7 @@ GÖREVLER:
 - İşletme sahibi teknik detay bilmiyor, sade anlat
 - "yaklaşık", "ortalama" gibi kelimeler yerine kesin rakamlar ver
 - Kullanıcıya direkt FUNCTION_CALL sonuçlarını göster, kendi hesaplama yapma
+- Kullanıcı "bunları göster", "onları listele" derse önceki konuşmaya bak ve context'e göre hareket et
 
 KULLANIM ÖRNEKLERİ:
 - "Son 3 ayın özeti"
@@ -75,13 +96,22 @@ FUNCTION_CALL: getCustomerAnalysis (tüm müşteriler) veya getCustomerAnalysis|
 FUNCTION_CALL: getCategorySales (kategorilere göre satışlar)
 
 Bu formatı gördüğümde ben otomatik olarak ilgili veriyi çekeceğim.`,
-          },
-        ];
-        this.conversationHistory.set(userId, history);
+            },
+          ],
+          lastActivity: now,
+        };
+        this.conversationHistory.set(userId, session);
+
+        if (now - (session?.lastActivity || 0) > this.SESSION_TIMEOUT) {
+          console.log(`New session started for user: ${userId}`);
+        }
       }
 
+      // Update last activity time
+      session.lastActivity = now;
+
       // Add user message to history
-      history.push({
+      session.messages.push({
         role: 'user',
         content: message,
       });
@@ -89,7 +119,7 @@ Bu formatı gördüğümde ben otomatik olarak ilgili veriyi çekeceğim.`,
       // Get response from ChatGPT
       const completion = await this.openai.chat.completions.create({
         model: 'gpt-4o-mini',
-        messages: history,
+        messages: session.messages,
         max_tokens: 800,
       });
 
@@ -101,16 +131,18 @@ Bu formatı gördüğümde ben otomatik olarak ilgili veriyi çekeceğim.`,
       }
 
       // Add assistant response to history
-      history.push({
+      session.messages.push({
         role: 'assistant',
         content: assistantMessage,
       });
 
-      // Keep only last 20 messages to avoid token limits
-      if (history.length > 21) {
-        history = [history[0], ...history.slice(-20)];
-        this.conversationHistory.set(userId, history);
+      // Keep only last 20 messages to avoid token limits (system prompt + 20 messages)
+      if (session.messages.length > 21) {
+        session.messages = [session.messages[0], ...session.messages.slice(-20)];
       }
+
+      // Update session in map
+      this.conversationHistory.set(userId, session);
 
       return assistantMessage;
     } catch (error) {
@@ -186,5 +218,6 @@ Bu formatı gördüğümde ben otomatik olarak ilgili veriyi çekeceğim.`,
 
   clearHistory(userId: string): void {
     this.conversationHistory.delete(userId);
+    console.log(`Conversation history cleared for user: ${userId}`);
   }
 }
