@@ -47,6 +47,8 @@ KULLANIM ÖRNEKLERİ:
 - "Ekim ayı raporu"
 
 ÖNEMLI: Eğer kullanıcı spesifik veri isterse (fatura detayı, stok durumu vb), ona FUNCTION_CALL formatında yanıt ver:
+
+TEMEL FONKSIYONLAR:
 FUNCTION_CALL: getSummary
 FUNCTION_CALL: getInvoices|beklemede
 FUNCTION_CALL: getInvoiceDetail|FT-2025-001
@@ -55,6 +57,15 @@ FUNCTION_CALL: getExpenses|eylül
 FUNCTION_CALL: getReceivables
 FUNCTION_CALL: getDebts
 FUNCTION_CALL: getMonthlyReport|ekim
+FUNCTION_CALL: getCompanyInfo
+
+ANALİZ FONKSİYONLARI:
+FUNCTION_CALL: getTopSellingProducts|2 (son 2 ay için en çok satan ürünler)
+FUNCTION_CALL: compareMonths|ağustos|eylül (iki ayı karşılaştır)
+FUNCTION_CALL: getGrowthRate|ağustos|eylül (büyüme oranı)
+FUNCTION_CALL: getOverdueCustomers (ödemesi geciken müşteriler)
+FUNCTION_CALL: getCustomerAnalysis (tüm müşteriler) veya getCustomerAnalysis|Tekno (spesifik müşteri)
+FUNCTION_CALL: getCategorySales (kategorilere göre satışlar)
 
 Bu formatı gördüğümde ben otomatik olarak ilgili veriyi çekeceğim.`,
           },
@@ -139,6 +150,24 @@ Bu formatı gördüğümde ben otomatik olarak ilgili veriyi çekeceğim.`,
           break;
         case 'getCompanyInfo':
           functionResult = this.accountingService.getCompanyInfo();
+          break;
+        case 'getTopSellingProducts':
+          functionResult = this.accountingService.getTopSellingProducts(parseInt(params?.[0] || '2'));
+          break;
+        case 'compareMonths':
+          functionResult = this.accountingService.compareMonths(params?.[0] || 'ağustos', params?.[1] || 'eylül');
+          break;
+        case 'getGrowthRate':
+          functionResult = this.accountingService.getGrowthRate(params?.[0] || 'ağustos', params?.[1] || 'eylül');
+          break;
+        case 'getOverdueCustomers':
+          functionResult = this.accountingService.getOverdueCustomers();
+          break;
+        case 'getCustomerAnalysis':
+          functionResult = this.accountingService.getCustomerAnalysis(params?.[0]);
+          break;
+        case 'getCategorySales':
+          functionResult = this.accountingService.getCategorySales();
           break;
       }
 
