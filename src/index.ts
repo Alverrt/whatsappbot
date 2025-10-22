@@ -2,12 +2,14 @@ import express, { Request, Response } from 'express';
 import { config } from './config';
 import { WhatsAppClient } from './whatsappClient';
 import { ChatGPTService } from './chatgptService';
+import { AudioService } from './audioService';
 
 const app = express();
 app.use(express.json());
 
 const whatsappClient = new WhatsAppClient();
 const chatgptService = new ChatGPTService();
+const audioService = new AudioService();
 
 // Webhook verification endpoint (GET)
 app.get('/webhook', (req: Request, res: Response) => {
@@ -44,19 +46,54 @@ app.post('/webhook', async (req: Request, res: Response) => {
                 const messageId = message.id;
                 const messageType = message.type;
 
-                // Only process text messages
+                // Mark message as read
+                await whatsappClient.markAsRead(messageId);
+
+                let messageText = '';
+
+                // Process text messages
                 if (messageType === 'text') {
-                  const messageText = message.text.body;
+                  messageText = message.text.body;
+                  console.log(`Received text from ${from}: ${messageText}`);
+                }
+                // Process voice/audio messages
+                else if (messageType === 'audio' || messageType === 'voice') {
+                  const mediaId = message.audio?.id || message.voice?.id;
 
-                  console.log(`Received message from ${from}: ${messageText}`);
+                  if (mediaId) {
+                    console.log(`Received voice message from ${from}, media ID: ${mediaId}`);
 
-                  // Mark message as read
-                  await whatsappClient.markAsRead(messageId);
+                    try {
+                      // Send "typing" indicator
+                      await whatsappClient.sendMessage(from, '🎤 Ses kaydınızı dinliyorum...');
 
-                  // Get ChatGPT response
+                      // Transcribe audio
+                      messageText = await audioService.processVoiceMessage(mediaId);
+                      console.log(`Transcribed text from ${from}: ${messageText}`);
+
+                      if (!messageText || messageText.trim() === '') {
+                        await whatsappClient.sendMessage(from, 'Üzgünüm, ses kaydınızı anlayamadım. Lütfen tekrar deneyin veya yazılı mesaj gönderin.');
+                        continue;
+                      }
+                    } catch (error) {
+                      console.error('Error processing voice message:', error);
+                      await whatsappClient.sendMessage(from, 'Ses kaydınızı işlerken bir hata oluştu. Lütfen tekrar deneyin.');
+                      continue;
+                    }
+                  } else {
+                    console.log(`Voice message from ${from} has no media ID`);
+                    continue;
+                  }
+                }
+                // Ignore other message types
+                else {
+                  console.log(`Ignoring message type: ${messageType} from ${from}`);
+                  continue;
+                }
+
+                // Get ChatGPT response for the text (either from text message or transcribed audio)
+                if (messageText && messageText.trim() !== '') {
                   const chatgptResponse = await chatgptService.getResponse(from, messageText);
-
-                  // Send response back to user
                   await whatsappClient.sendMessage(from, chatgptResponse);
                 }
               }
