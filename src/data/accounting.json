@@ -1,0 +1,870 @@
+{
+  "firma": {
+    "ad": "Tekno Elektronik Ticaret Ltd. Şti.",
+    "vergiNo": "1234567890",
+    "adres": "Atatürk Cad. No:45 Kadıköy/İstanbul",
+    "sektor": "Elektronik Perakende",
+    "kurulusTarihi": "2018-03-15"
+  },
+  "ozet": {
+    "sonGuncelleme": "2025-10-22",
+    "toplamCiro": 2847500,
+    "toplamGider": 1923400,
+    "netKar": 924100,
+    "karMarji": 32.45,
+    "toplamAlacak": 487600,
+    "toplamBorc": 234800,
+    "stokDegeri": 856300
+  },
+  "faturalar": [
+    {
+      "id": "FT-2025-001",
+      "tarih": "2025-08-03",
+      "musteri": "Ay Bilgisayar San. Tic.",
+      "musteriVergiNo": "9876543210",
+      "urunler": [
+        {
+          "ad": "Dizüstü Bilgisayar Lenovo ThinkPad",
+          "adet": 5,
+          "birimFiyat": 28500,
+          "kdv": 18,
+          "toplam": 168150
+        }
+      ],
+      "araToplam": 142500,
+      "kdvToplam": 25650,
+      "genelToplam": 168150,
+      "durum": "ödendi",
+      "odemeTarihi": "2025-08-15",
+      "odemeTipi": "banka havale"
+    },
+    {
+      "id": "FT-2025-002",
+      "tarih": "2025-08-07",
+      "musteri": "Yıldız Teknoloji A.Ş.",
+      "musteriVergiNo": "5647382910",
+      "urunler": [
+        {
+          "ad": "Gaming Mouse Logitech G502",
+          "adet": 15,
+          "birimFiyat": 1850,
+          "kdv": 18,
+          "toplam": 32768
+        },
+        {
+          "ad": "Mekanik Klavye Corsair K95",
+          "adet": 12,
+          "birimFiyat": 3200,
+          "kdv": 18,
+          "toplam": 45312
+        }
+      ],
+      "araToplam": 66150,
+      "kdvToplam": 11907,
+      "genelToplam": 78057,
+      "durum": "ödendi",
+      "odemeTarihi": "2025-08-20",
+      "odemeTipi": "kredi kartı"
+    },
+    {
+      "id": "FT-2025-003",
+      "tarih": "2025-08-12",
+      "musteri": "Güneş Eğitim Kurumları",
+      "musteriVergiNo": "3456789012",
+      "urunler": [
+        {
+          "ad": "27\" Monitör Dell UltraSharp",
+          "adet": 25,
+          "birimFiyat": 8500,
+          "kdv": 18,
+          "toplam": 250750
+        },
+        {
+          "ad": "Webcam Logitech C920",
+          "adet": 25,
+          "birimFiyat": 1250,
+          "kdv": 18,
+          "toplam": 36875
+        }
+      ],
+      "araToplam": 243750,
+      "kdvToplam": 43875,
+      "genelToplam": 287625,
+      "durum": "ödendi",
+      "odemeTarihi": "2025-08-28",
+      "odemeTipi": "banka havale"
+    },
+    {
+      "id": "FT-2025-004",
+      "tarih": "2025-08-18",
+      "musteri": "Bulut Yazılım Ltd.",
+      "musteriVergiNo": "7890123456",
+      "urunler": [
+        {
+          "ad": "MacBook Pro M3 14\"",
+          "adet": 3,
+          "birimFiyat": 67500,
+          "kdv": 18,
+          "toplam": 238950
+        }
+      ],
+      "araToplam": 202500,
+      "kdvToplam": 36450,
+      "genelToplam": 238950,
+      "durum": "ödendi",
+      "odemeTarihi": "2025-09-02",
+      "odemeTipi": "banka havale"
+    },
+    {
+      "id": "FT-2025-005",
+      "tarih": "2025-08-25",
+      "musteri": "Mavi Danışmanlık",
+      "musteriVergiNo": "2468135790",
+      "urunler": [
+        {
+          "ad": "iPad Air 11\" 256GB",
+          "adet": 8,
+          "birimFiyat": 24900,
+          "kdv": 18,
+          "toplam": 235152
+        },
+        {
+          "ad": "Apple Pencil 2",
+          "adet": 8,
+          "birimFiyat": 4500,
+          "kdv": 18,
+          "toplam": 42480
+        }
+      ],
+      "araToplam": 235200,
+      "kdvToplam": 42336,
+      "genelToplam": 277536,
+      "durum": "beklemede",
+      "odemeTarihi": null,
+      "odemeTipi": null,
+      "vadeTarihi": "2025-09-25"
+    },
+    {
+      "id": "FT-2025-006",
+      "tarih": "2025-09-05",
+      "musteri": "Kırmızı Ajans",
+      "musteriVergiNo": "1357924680",
+      "urunler": [
+        {
+          "ad": "SSD Samsung 970 EVO 1TB",
+          "adet": 20,
+          "birimFiyat": 2850,
+          "kdv": 18,
+          "toplam": 67260
+        },
+        {
+          "ad": "RAM Corsair Vengeance 32GB",
+          "adet": 15,
+          "birimFiyat": 4200,
+          "kdv": 18,
+          "toplam": 74340
+        }
+      ],
+      "araToplam": 120000,
+      "kdvToplam": 21600,
+      "genelToplam": 141600,
+      "durum": "ödendi",
+      "odemeTarihi": "2025-09-12",
+      "odemeTipi": "kredi kartı"
+    },
+    {
+      "id": "FT-2025-007",
+      "tarih": "2025-09-10",
+      "musteri": "Yeşil Mimarlık",
+      "musteriVergiNo": "9753108642",
+      "urunler": [
+        {
+          "ad": "Grafik Tablet Wacom Intuos Pro L",
+          "adet": 6,
+          "birimFiyat": 12500,
+          "kdv": 18,
+          "toplam": 88500
+        }
+      ],
+      "araToplam": 75000,
+      "kdvToplam": 13500,
+      "genelToplam": 88500,
+      "durum": "ödendi",
+      "odemeTarihi": "2025-09-18",
+      "odemeTipi": "banka havale"
+    },
+    {
+      "id": "FT-2025-008",
+      "tarih": "2025-09-15",
+      "musteri": "Turuncu Medya",
+      "musteriVergiNo": "8642097531",
+      "urunler": [
+        {
+          "ad": "Canon EOS R6 Mark II Body",
+          "adet": 2,
+          "birimFiyat": 95000,
+          "kdv": 18,
+          "toplam": 224200
+        },
+        {
+          "ad": "Canon RF 24-70mm f/2.8 L IS",
+          "adet": 2,
+          "birimFiyat": 78000,
+          "kdv": 18,
+          "toplam": 184080
+        }
+      ],
+      "araToplam": 346000,
+      "kdvToplam": 62280,
+      "genelToplam": 408280,
+      "durum": "ödendi",
+      "odemeTarihi": "2025-09-20",
+      "odemeTipi": "banka havale"
+    },
+    {
+      "id": "FT-2025-009",
+      "tarih": "2025-09-22",
+      "musteri": "Mor Teknoloji",
+      "musteriVergiNo": "5319753864",
+      "urunler": [
+        {
+          "ad": "iPhone 15 Pro 256GB",
+          "adet": 10,
+          "birimFiyat": 48900,
+          "kdv": 18,
+          "toplam": 577020
+        }
+      ],
+      "araToplam": 489000,
+      "kdvToplam": 88020,
+      "genelToplam": 577020,
+      "durum": "kısmi ödendi",
+      "odemeTarihi": "2025-09-28",
+      "odenenMiktar": 300000,
+      "kalanBorc": 277020,
+      "odemeTipi": "banka havale"
+    },
+    {
+      "id": "FT-2025-010",
+      "tarih": "2025-09-28",
+      "musteri": "Pembe Danışmanlık",
+      "musteriVergiNo": "7531598642",
+      "urunler": [
+        {
+          "ad": "Microsoft Surface Laptop 5",
+          "adet": 7,
+          "birimFiyat": 38500,
+          "kdv": 18,
+          "toplam": 317730
+        }
+      ],
+      "araToplam": 269500,
+      "kdvToplam": 48510,
+      "genelToplam": 318010,
+      "durum": "beklemede",
+      "odemeTarihi": null,
+      "odemeTipi": null,
+      "vadeTarihi": "2025-10-28"
+    },
+    {
+      "id": "FT-2025-011",
+      "tarih": "2025-10-02",
+      "musteri": "Altın Ofis Mobilya",
+      "musteriVergiNo": "1928374650",
+      "urunler": [
+        {
+          "ad": "HP LaserJet Pro MFP M428fdw",
+          "adet": 4,
+          "birimFiyat": 18500,
+          "kdv": 18,
+          "toplam": 87320
+        }
+      ],
+      "araToplam": 74000,
+      "kdvToplam": 13320,
+      "genelToplam": 87320,
+      "durum": "ödendi",
+      "odemeTarihi": "2025-10-10",
+      "odemeTipi": "kredi kartı"
+    },
+    {
+      "id": "FT-2025-012",
+      "tarih": "2025-10-08",
+      "musteri": "Gümüş Mühendislik",
+      "musteriVergiNo": "5647382019",
+      "urunler": [
+        {
+          "ad": "Dell Precision 7780 Workstation",
+          "adet": 3,
+          "birimFiyat": 125000,
+          "kdv": 18,
+          "toplam": 442500
+        }
+      ],
+      "araToplam": 375000,
+      "kdvToplam": 67500,
+      "genelToplam": 442500,
+      "durum": "ödendi",
+      "odemeTarihi": "2025-10-15",
+      "odemeTipi": "banka havale"
+    },
+    {
+      "id": "FT-2025-013",
+      "tarih": "2025-10-12",
+      "musteri": "Bronz Teknoloji",
+      "musteriVergiNo": "3698521470",
+      "urunler": [
+        {
+          "ad": "Sony WH-1000XM5 Kulaklık",
+          "adet": 30,
+          "birimFiyat": 8500,
+          "kdv": 18,
+          "toplam": 300900
+        },
+        {
+          "ad": "Anker PowerCore 26800mAh",
+          "adet": 50,
+          "birimFiyat": 1250,
+          "kdv": 18,
+          "toplam": 73750
+        }
+      ],
+      "araToplam": 317500,
+      "kdvToplam": 57150,
+      "genelToplam": 374650,
+      "durum": "ödendi",
+      "odemeTarihi": "2025-10-18",
+      "odemeTipi": "kredi kartı"
+    },
+    {
+      "id": "FT-2025-014",
+      "tarih": "2025-10-18",
+      "musteri": "Elmas Yazılım A.Ş.",
+      "musteriVergiNo": "7539514862",
+      "urunler": [
+        {
+          "ad": "Samsung Odyssey G9 49\" Curved Monitor",
+          "adet": 8,
+          "birimFiyat": 45000,
+          "kdv": 18,
+          "toplam": 424800
+        }
+      ],
+      "araToplam": 360000,
+      "kdvToplam": 64800,
+      "genelToplam": 424800,
+      "durum": "beklemede",
+      "odemeTarihi": null,
+      "odemeTipi": null,
+      "vadeTarihi": "2025-11-18"
+    }
+  ],
+  "giderler": [
+    {
+      "id": "GD-2025-001",
+      "tarih": "2025-08-01",
+      "kategori": "kira",
+      "aciklama": "Ağustos ayı ofis kirası",
+      "tutar": 45000,
+      "odemeTipi": "banka havale"
+    },
+    {
+      "id": "GD-2025-002",
+      "tarih": "2025-08-05",
+      "kategori": "personel",
+      "aciklama": "Ağustos maaşları (8 çalışan)",
+      "tutar": 320000,
+      "odemeTipi": "banka havale"
+    },
+    {
+      "id": "GD-2025-003",
+      "tarih": "2025-08-08",
+      "kategori": "stok",
+      "aciklama": "Tedarikçi - Tekno Dağıtım A.Ş. ürün alımı",
+      "tutar": 385000,
+      "odemeTipi": "banka havale",
+      "tedarikci": "Tekno Dağıtım A.Ş."
+    },
+    {
+      "id": "GD-2025-004",
+      "tarih": "2025-08-10",
+      "kategori": "faturalar",
+      "aciklama": "Elektrik faturası",
+      "tutar": 8500,
+      "odemeTipi": "otomatik ödeme"
+    },
+    {
+      "id": "GD-2025-005",
+      "tarih": "2025-08-10",
+      "kategori": "faturalar",
+      "aciklama": "İnternet faturası",
+      "tutar": 2400,
+      "odemeTipi": "otomatik ödeme"
+    },
+    {
+      "id": "GD-2025-006",
+      "tarih": "2025-08-15",
+      "kategori": "nakliye",
+      "aciklama": "Ağustos ayı kargo giderleri",
+      "tutar": 12600,
+      "odemeTipi": "kredi kartı"
+    },
+    {
+      "id": "GD-2025-007",
+      "tarih": "2025-08-20",
+      "kategori": "pazarlama",
+      "aciklama": "Google Ads kampanyası",
+      "tutar": 15000,
+      "odemeTipi": "kredi kartı"
+    },
+    {
+      "id": "GD-2025-008",
+      "tarih": "2025-08-25",
+      "kategori": "danışmanlık",
+      "aciklama": "Mali müşavir aylık hizmet bedeli",
+      "tutar": 8500,
+      "odemeTipi": "banka havale"
+    },
+    {
+      "id": "GD-2025-009",
+      "tarih": "2025-09-01",
+      "kategori": "kira",
+      "aciklama": "Eylül ayı ofis kirası",
+      "tutar": 45000,
+      "odemeTipi": "banka havale"
+    },
+    {
+      "id": "GD-2025-010",
+      "tarih": "2025-09-05",
+      "kategori": "personel",
+      "aciklama": "Eylül maaşları (8 çalışan)",
+      "tutar": 320000,
+      "odemeTipi": "banka havale"
+    },
+    {
+      "id": "GD-2025-011",
+      "tarih": "2025-09-07",
+      "kategori": "stok",
+      "aciklama": "Tedarikçi - Apple Yetkili Distribütör ürün alımı",
+      "tutar": 425000,
+      "odemeTipi": "banka havale",
+      "tedarikci": "Apple Yetkili Distribütör"
+    },
+    {
+      "id": "GD-2025-012",
+      "tarih": "2025-09-10",
+      "kategori": "faturalar",
+      "aciklama": "Elektrik faturası",
+      "tutar": 9200,
+      "odemeTipi": "otomatik ödeme"
+    },
+    {
+      "id": "GD-2025-013",
+      "tarih": "2025-09-10",
+      "kategori": "faturalar",
+      "aciklama": "İnternet faturası",
+      "tutar": 2400,
+      "odemeTipi": "otomatik ödeme"
+    },
+    {
+      "id": "GD-2025-014",
+      "tarih": "2025-09-14",
+      "kategori": "nakliye",
+      "aciklama": "Eylül ayı kargo giderleri",
+      "tutar": 14800,
+      "odemeTipi": "kredi kartı"
+    },
+    {
+      "id": "GD-2025-015",
+      "tarih": "2025-09-18",
+      "kategori": "pazarlama",
+      "aciklama": "Instagram & Facebook Ads",
+      "tutar": 12000,
+      "odemeTipi": "kredi kartı"
+    },
+    {
+      "id": "GD-2025-016",
+      "tarih": "2025-09-22",
+      "kategori": "ofis",
+      "aciklama": "Ofis malzemeleri ve kırtasiye",
+      "tutar": 4500,
+      "odemeTipi": "nakit"
+    },
+    {
+      "id": "GD-2025-017",
+      "tarih": "2025-09-25",
+      "kategori": "danışmanlık",
+      "aciklama": "Mali müşavir aylık hizmet bedeli",
+      "tutar": 8500,
+      "odemeTipi": "banka havale"
+    },
+    {
+      "id": "GD-2025-018",
+      "tarih": "2025-10-01",
+      "kategori": "kira",
+      "aciklama": "Ekim ayı ofis kirası",
+      "tutar": 45000,
+      "odemeTipi": "banka havale"
+    },
+    {
+      "id": "GD-2025-019",
+      "tarih": "2025-10-05",
+      "kategori": "personel",
+      "aciklama": "Ekim maaşları (8 çalışan)",
+      "tutar": 320000,
+      "odemeTipi": "banka havale"
+    },
+    {
+      "id": "GD-2025-020",
+      "tarih": "2025-10-08",
+      "kategori": "stok",
+      "aciklama": "Tedarikçi - Samsung Türkiye ürün alımı",
+      "tutar": 315000,
+      "odemeTipi": "banka havale",
+      "tedarikci": "Samsung Türkiye"
+    },
+    {
+      "id": "GD-2025-021",
+      "tarih": "2025-10-10",
+      "kategori": "faturalar",
+      "aciklama": "Elektrik faturası",
+      "tutar": 8900,
+      "odemeTipi": "otomatik ödeme"
+    },
+    {
+      "id": "GD-2025-022",
+      "tarih": "2025-10-10",
+      "kategori": "faturalar",
+      "aciklama": "İnternet faturası",
+      "tutar": 2400,
+      "odemeTipi": "otomatik ödeme"
+    },
+    {
+      "id": "GD-2025-023",
+      "tarih": "2025-10-15",
+      "kategori": "nakliye",
+      "aciklama": "Ekim ayı kargo giderleri",
+      "tutar": 16500,
+      "odemeTipi": "kredi kartı"
+    },
+    {
+      "id": "GD-2025-024",
+      "tarih": "2025-10-20",
+      "kategori": "pazarlama",
+      "aciklama": "LinkedIn Ads B2B kampanyası",
+      "tutar": 18000,
+      "odemeTipi": "kredi kartı"
+    }
+  ],
+  "stok": [
+    {
+      "urunKodu": "UR-001",
+      "urunAdi": "Dizüstü Bilgisayar Lenovo ThinkPad",
+      "kategori": "Bilgisayar",
+      "mevcutMiktar": 12,
+      "birimMaliyet": 24000,
+      "satisFiyati": 28500,
+      "minimumStok": 5,
+      "tedarikci": "Tekno Dağıtım A.Ş.",
+      "sonGirisTarihi": "2025-09-07"
+    },
+    {
+      "urunKodu": "UR-002",
+      "urunAdi": "Gaming Mouse Logitech G502",
+      "kategori": "Aksesuar",
+      "mevcutMiktar": 45,
+      "birimMaliyet": 1500,
+      "satisFiyati": 1850,
+      "minimumStok": 20,
+      "tedarikci": "Tekno Dağıtım A.Ş.",
+      "sonGirisTarihi": "2025-08-08"
+    },
+    {
+      "urunKodu": "UR-003",
+      "urunAdi": "Mekanik Klavye Corsair K95",
+      "kategori": "Aksesuar",
+      "mevcutMiktar": 28,
+      "birimMaliyet": 2700,
+      "satisFiyati": 3200,
+      "minimumStok": 15,
+      "tedarikci": "Tekno Dağıtım A.Ş.",
+      "sonGirisTarihi": "2025-08-08"
+    },
+    {
+      "urunKodu": "UR-004",
+      "urunAdi": "27\" Monitör Dell UltraSharp",
+      "kategori": "Monitor",
+      "mevcutMiktar": 18,
+      "birimMaliyet": 7200,
+      "satisFiyati": 8500,
+      "minimumStok": 10,
+      "tedarikci": "Tekno Dağıtım A.Ş.",
+      "sonGirisTarihi": "2025-09-07"
+    },
+    {
+      "urunKodu": "UR-005",
+      "urunAdi": "Webcam Logitech C920",
+      "kategori": "Aksesuar",
+      "mevcutMiktar": 35,
+      "birimMaliyet": 1050,
+      "satisFiyati": 1250,
+      "minimumStok": 20,
+      "tedarikci": "Tekno Dağıtım A.Ş.",
+      "sonGirisTarihi": "2025-08-08"
+    },
+    {
+      "urunKodu": "UR-006",
+      "urunAdi": "MacBook Pro M3 14\"",
+      "kategori": "Bilgisayar",
+      "mevcutMiktar": 5,
+      "birimMaliyet": 58000,
+      "satisFiyati": 67500,
+      "minimumStok": 3,
+      "tedarikci": "Apple Yetkili Distribütör",
+      "sonGirisTarihi": "2025-09-07",
+      "uyari": "Stok kritik seviyede"
+    },
+    {
+      "urunKodu": "UR-007",
+      "urunAdi": "iPad Air 11\" 256GB",
+      "kategori": "Tablet",
+      "mevcutMiktar": 22,
+      "birimMaliyet": 21500,
+      "satisFiyati": 24900,
+      "minimumStok": 10,
+      "tedarikci": "Apple Yetkili Distribütör",
+      "sonGirisTarihi": "2025-09-07"
+    },
+    {
+      "urunKodu": "UR-008",
+      "urunAdi": "Apple Pencil 2",
+      "kategori": "Aksesuar",
+      "mevcutMiktar": 30,
+      "birimMaliyet": 3800,
+      "satisFiyati": 4500,
+      "minimumStok": 15,
+      "tedarikci": "Apple Yetkili Distribütör",
+      "sonGirisTarihi": "2025-09-07"
+    },
+    {
+      "urunKodu": "UR-009",
+      "urunAdi": "SSD Samsung 970 EVO 1TB",
+      "kategori": "Donanım",
+      "mevcutMiktar": 65,
+      "birimMaliyet": 2400,
+      "satisFiyati": 2850,
+      "minimumStok": 30,
+      "tedarikci": "Samsung Türkiye",
+      "sonGirisTarihi": "2025-10-08"
+    },
+    {
+      "urunKodu": "UR-010",
+      "urunAdi": "RAM Corsair Vengeance 32GB",
+      "kategori": "Donanım",
+      "mevcutMiktar": 42,
+      "birimMaliyet": 3500,
+      "satisFiyati": 4200,
+      "minimumStok": 20,
+      "tedarikci": "Tekno Dağıtım A.Ş.",
+      "sonGirisTarihi": "2025-09-07"
+    },
+    {
+      "urunKodu": "UR-011",
+      "urunAdi": "Grafik Tablet Wacom Intuos Pro L",
+      "kategori": "Aksesuar",
+      "mevcutMiktar": 8,
+      "birimMaliyet": 10500,
+      "satisFiyati": 12500,
+      "minimumStok": 5,
+      "tedarikci": "Tekno Dağıtım A.Ş.",
+      "sonGirisTarihi": "2025-08-08"
+    },
+    {
+      "urunKodu": "UR-012",
+      "urunAdi": "Canon EOS R6 Mark II Body",
+      "kategori": "Fotoğraf",
+      "mevcutMiktar": 4,
+      "birimMaliyet": 82000,
+      "satisFiyati": 95000,
+      "minimumStok": 2,
+      "tedarikci": "Canon Türkiye",
+      "sonGirisTarihi": "2025-09-07",
+      "uyari": "Stok kritik seviyede"
+    },
+    {
+      "urunKodu": "UR-013",
+      "urunAdi": "Canon RF 24-70mm f/2.8 L IS",
+      "kategori": "Fotoğraf",
+      "mevcutMiktar": 3,
+      "birimMaliyet": 67000,
+      "satisFiyati": 78000,
+      "minimumStok": 2,
+      "tedarikci": "Canon Türkiye",
+      "sonGirisTarihi": "2025-09-07",
+      "uyari": "Stok kritik seviyede"
+    },
+    {
+      "urunKodu": "UR-014",
+      "urunAdi": "iPhone 15 Pro 256GB",
+      "kategori": "Telefon",
+      "mevcutMiktar": 15,
+      "birimMaliyet": 42500,
+      "satisFiyati": 48900,
+      "minimumStok": 8,
+      "tedarikci": "Apple Yetkili Distribütör",
+      "sonGirisTarihi": "2025-09-07"
+    },
+    {
+      "urunKodu": "UR-015",
+      "urunAdi": "Microsoft Surface Laptop 5",
+      "kategori": "Bilgisayar",
+      "mevcutMiktar": 9,
+      "birimMaliyet": 33000,
+      "satisFiyati": 38500,
+      "minimumStok": 5,
+      "tedarikci": "Microsoft Türkiye",
+      "sonGirisTarihi": "2025-08-08"
+    },
+    {
+      "urunKodu": "UR-016",
+      "urunAdi": "HP LaserJet Pro MFP M428fdw",
+      "kategori": "Yazıcı",
+      "mevcutMiktar": 11,
+      "birimMaliyet": 16000,
+      "satisFiyati": 18500,
+      "minimumStok": 5,
+      "tedarikci": "Tekno Dağıtım A.Ş.",
+      "sonGirisTarihi": "2025-10-08"
+    },
+    {
+      "urunKodu": "UR-017",
+      "urunAdi": "Dell Precision 7780 Workstation",
+      "kategori": "Bilgisayar",
+      "mevcutMiktar": 2,
+      "birimMaliyet": 108000,
+      "satisFiyati": 125000,
+      "minimumStok": 2,
+      "tedarikci": "Dell Türkiye",
+      "sonGirisTarihi": "2025-10-08",
+      "uyari": "Minimum stokta"
+    },
+    {
+      "urunKodu": "UR-018",
+      "urunAdi": "Sony WH-1000XM5 Kulaklık",
+      "kategori": "Aksesuar",
+      "mevcutMiktar": 58,
+      "birimMaliyet": 7200,
+      "satisFiyati": 8500,
+      "minimumStok": 25,
+      "tedarikci": "Sony Türkiye",
+      "sonGirisTarihi": "2025-10-08"
+    },
+    {
+      "urunKodu": "UR-019",
+      "urunAdi": "Anker PowerCore 26800mAh",
+      "kategori": "Aksesuar",
+      "mevcutMiktar": 125,
+      "birimMaliyet": 1050,
+      "satisFiyati": 1250,
+      "minimumStok": 50,
+      "tedarikci": "Tekno Dağıtım A.Ş.",
+      "sonGirisTarihi": "2025-10-08"
+    },
+    {
+      "urunKodu": "UR-020",
+      "urunAdi": "Samsung Odyssey G9 49\" Curved Monitor",
+      "kategori": "Monitor",
+      "mevcutMiktar": 6,
+      "birimMaliyet": 38500,
+      "satisFiyati": 45000,
+      "minimumStok": 3,
+      "tedarikci": "Samsung Türkiye",
+      "sonGirisTarihi": "2025-10-08"
+    }
+  ],
+  "alacaklar": [
+    {
+      "faturaId": "FT-2025-005",
+      "musteri": "Mavi Danışmanlık",
+      "tutar": 277536,
+      "vadeTarihi": "2025-09-25",
+      "gecikmeGunu": 28,
+      "durum": "gecikmiş"
+    },
+    {
+      "faturaId": "FT-2025-009",
+      "musteri": "Mor Teknoloji",
+      "tutar": 277020,
+      "vadeTarihi": "2025-10-28",
+      "gecikmeGunu": 0,
+      "durum": "kısmi ödeme",
+      "odenenMiktar": 300000,
+      "aciklama": "577.020 TL'nin 300.000 TL'si ödendi"
+    },
+    {
+      "faturaId": "FT-2025-010",
+      "musteri": "Pembe Danışmanlık",
+      "tutar": 318010,
+      "vadeTarihi": "2025-10-28",
+      "gecikmeGunu": 0,
+      "durum": "vadesi yaklaşıyor"
+    },
+    {
+      "faturaId": "FT-2025-014",
+      "musteri": "Elmas Yazılım A.Ş.",
+      "tutar": 424800,
+      "vadeTarihi": "2025-11-18",
+      "gecikmeGunu": 0,
+      "durum": "normal"
+    }
+  ],
+  "borclar": [
+    {
+      "tedarikci": "Tekno Dağıtım A.Ş.",
+      "tutar": 125000,
+      "vadeTarihi": "2025-11-05",
+      "aciklama": "Ekim ayı ürün alımı kalan ödemesi"
+    },
+    {
+      "tedarikci": "Samsung Türkiye",
+      "tutar": 85000,
+      "vadeTarihi": "2025-11-10",
+      "aciklama": "Monitör ve SSD alımı kalan ödemesi"
+    },
+    {
+      "tedarikci": "Ofis Sahibi - Mehmet Yılmaz",
+      "tutar": 24800,
+      "vadeTarihi": "2025-11-01",
+      "aciklama": "Aidat ve ortak alan giderleri"
+    }
+  ],
+  "aylikOzet": [
+    {
+      "ay": "Ağustos 2025",
+      "ciro": 1050362,
+      "gider": 797000,
+      "netKar": 253362,
+      "karMarji": 24.12,
+      "faturaAdedi": 4,
+      "yeniMusteri": 4
+    },
+    {
+      "ay": "Eylül 2025",
+      "ciro": 1493586,
+      "gider": 866200,
+      "netKar": 627386,
+      "karMarji": 42.01,
+      "faturaAdedi": 6,
+      "yeniMusteri": 5
+    },
+    {
+      "ay": "Ekim 2025",
+      "ciro": 1329270,
+      "gider": 725800,
+      "netKar": 603470,
+      "karMarji": 45.39,
+      "faturaAdedi": 4,
+      "yeniMusteri": 3
+    }
+  ]
+}
