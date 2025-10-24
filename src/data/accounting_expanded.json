@@ -1,0 +1,540 @@
+{
+  "firma": {
+    "ad": "Tekno Elektronik Ticaret Ltd. Şti.",
+    "vergiNo": "1234567890",
+    "adres": "Atatürk Cad. No:45 Kadıköy/İstanbul",
+    "sektor": "Elektronik Perakende",
+    "kurulusTarihi": "2018-03-15",
+    "calisanSayisi": 8,
+    "depoAdresi": "Organize Sanayi Bölgesi 3. Cadde No:12 Pendik/İstanbul"
+  },
+  "musteriler": [
+    {
+      "id": "MST-001",
+      "ad": "Ay Bilgisayar San. Tic.",
+      "vergiNo": "9876543210",
+      "yetkili": "Ahmet Yılmaz",
+      "telefon": "+905321234567",
+      "email": "info@aybilgisayar.com",
+      "adres": "Bağdat Cad. No:123 Kadıköy/İstanbul",
+      "vadeGunu": 30,
+      "krediLimiti": 500000,
+      "risk Skoru": "A",
+      "kayitTarihi": "2020-05-15",
+      "toplamAlisveris": 842300,
+      "gecikmiOdeme": 0,
+      "ortalama GecikmeSuresi": 0,
+      "aktif": true
+    },
+    {
+      "id": "MST-002",
+      "ad": "Yıldız Teknoloji A.Ş.",
+      "vergiNo": "5647382910",
+      "yetkili": "Mehmet Kaya",
+      "telefon": "+905339876543",
+      "email": "siparis@yildiztek.com",
+      "adres": "Halaskargazi Cad. No:45 Şişli/İstanbul",
+      "vadeGunu": 45,
+      "krediLimiti": 750000,
+      "riskSkoru": "A",
+      "kayitTarihi": "2019-03-20",
+      "toplamAlisveris": 1245600,
+      "gecikmiOdeme": 1,
+      "ortalamaGecikmeSuresi": 5,
+      "aktif": true
+    },
+    {
+      "id": "MST-003",
+      "ad": "Mavi Danışmanlık",
+      "vergiNo": "2468135790",
+      "yetkili": "Ayşe Demir",
+      "telefon": "+905421112233",
+      "email": "finans@mavidanismanlik.com",
+      "adres": "Nispetiye Cad. No:78 Etiler/İstanbul",
+      "vadeGunu": 30,
+      "krediLimiti": 300000,
+      "riskSkoru": "C",
+      "kayitTarihi": "2022-01-10",
+      "toplamAlisveris": 556000,
+      "gecikmiOdeme": 3,
+      "ortalamaGecikmeSuresi": 28,
+      "aktif": true,
+      "uyari": "Ödemeler gecikme eğiliminde"
+    },
+    {
+      "id": "MST-004",
+      "ad": "Kırmızı Ajans",
+      "vergiNo": "1357924680",
+      "yetkili": "Can Özkan",
+      "telefon": "+905556667788",
+      "email": "muhasebe@kirmiz iajans.com",
+      "adres": "Teşvikiye Cad. No:34 Nişantaşı/İstanbul",
+      "vadeGunu": 60,
+      "krediLimiti": 400000,
+      "riskSkoru": "B",
+      "kayitTarihi": "2021-06-15",
+      "toplamAlisveris": 687400,
+      "gecikmiOdeme": 0,
+      "ortalamaGecikmeSuresi": 0,
+      "aktif": true
+    }
+  ],
+  "tahsilatlar": [
+    {
+      "id": "THS-001",
+      "tarih": "2025-08-15",
+      "faturaId": "FT-2025-001",
+      "musteri": "Ay Bilgisayar San. Tic.",
+      "tutar": 168150,
+      "odemeTipi": "nakit",
+      "aciklama": "Peşin ödeme"
+    },
+    {
+      "id": "THS-002",
+      "tarih": "2025-08-20",
+      "faturaId": "FT-2025-002",
+      "musteri": "Yıldız Teknoloji A.Ş.",
+      "tutar": 78057,
+      "odemeTipi": "kredi_karti",
+      "taksitSayisi": 3,
+      "aciklama": "3 taksit"
+    },
+    {
+      "id": "THS-003",
+      "tarih": "2025-08-28",
+      "faturaId": "FT-2025-003",
+      "musteri": "Güneş Eğitim Kurumları",
+      "tutar": 287625,
+      "odemeTipi": "cek",
+      "cekVadesi": "2025-09-28",
+      "cekNo": "123456",
+      "banka": "Garanti BBVA",
+      "aciklama": "1 aylık vadeli çek"
+    },
+    {
+      "id": "THS-004",
+      "tarih": "2025-09-02",
+      "faturaId": "FT-2025-004",
+      "musteri": "Bulut Yazılım Ltd.",
+      "tutar": 238950,
+      "odemeTipi": "havale",
+      "aciklama": "Banka havalesi"
+    },
+    {
+      "id": "THS-005",
+      "tarih": "2025-09-28",
+      "faturaId": "FT-2025-009",
+      "musteri": "Mor Teknoloji",
+      "tutar": 300000,
+      "odemeTipi": "senet",
+      "senetVadesi": "2025-11-30",
+      "senetNo": "SN-2025-001",
+      "aciklama": "Kısmi ödeme - 2 aylık senet"
+    }
+  ],
+  "alisF aturaları": [
+    {
+      "id": "AF-2025-001",
+      "tarih": "2025-08-08",
+      "tedarikci": "Tekno Dağıtım A.Ş.",
+      "tedarikciVergiNo": "9999888877",
+      "urunler": [
+        {"ad": "Dizüstü Bilgisayar Lenovo ThinkPad", "adet": 10, "birimMaliyet": 24000, "toplam": 240000},
+        {"ad": "Gaming Mouse Logitech G502", "adet": 30, "birimMaliyet": 1500, "toplam": 45000},
+        {"ad": "Mekanik Klavye Corsair K95", "adet": 25, "birimMaliyet": 2700, "toplam": 67500}
+      ],
+      "araToplam": 352500,
+      "kdvToplam": 63450,
+      "genelToplam": 415950,
+      "durum": "ödendi",
+      "odemeTarihi": "2025-08-22",
+      "odemeTipi": "havale",
+      "vadeGunu": 45
+    },
+    {
+      "id": "AF-2025-002",
+      "tarih": "2025-09-07",
+      "tedarikci": "Apple Yetkili Distribütör",
+      "tedarikciVergiNo": "8888777766",
+      "urunler": [
+        {"ad": "MacBook Pro M3 14\"", "adet": 5, "birimMaliyet": 58000, "toplam": 290000},
+        {"ad": "iPad Air 11\" 256GB", "adet": 15, "birimMaliyet": 21500, "toplam": 322500},
+        {"ad": "Apple Pencil 2", "adet": 15, "birimMaliyet": 3800, "toplam": 57000}
+      ],
+      "araToplam": 669500,
+      "kdvToplam": 120510,
+      "genelToplam": 790010,
+      "durum": "kısmi_ödendi",
+      "odenenMiktar": 400000,
+      "kalanBorc": 390010,
+      "odemeTarihi": "2025-09-15",
+      "odemeTipi": "havale",
+      "vadeGunu": 60
+    },
+    {
+      "id": "AF-2025-003",
+      "tarih": "2025-10-08",
+      "tedarikci": "Samsung Türkiye",
+      "tedarikciVergiNo": "7777666655",
+      "urunler": [
+        {"ad": "SSD Samsung 970 EVO 1TB", "adet": 50, "birimMaliyet": 2400, "toplam": 120000},
+        {"ad": "Samsung Odyssey G9 49\" Curved Monitor", "adet": 10, "birimMaliyet": 38500, "toplam": 385000}
+      ],
+      "araToplam": 505000,
+      "kdvToplam": 90900,
+      "genelToplam": 595900,
+      "durum": "beklemede",
+      "vadeTarihi": "2025-11-10",
+      "vadeGunu": 30
+    }
+  ],
+  "personel": [
+    {
+      "id": "PRS-001",
+      "adSoyad": "Mehmet Yılmaz",
+      "tc": "12345678901",
+      "pozisyon": "Satış Müdürü",
+      "maas": 45000,
+      "iseBaslamaTarihi": "2019-01-15",
+      "telefon": "+905301112233",
+      "sgkNo": "1234567890",
+      "aktif": true,
+      "primOrani": 0.05,
+      "toplamPrim": 12500,
+      "gecGelme": 2,
+      "izinGunu": 5
+    },
+    {
+      "id": "PRS-002",
+      "adSoyad": "Ayşe Kaya",
+      "tc": "98765432101",
+      "pozisyon": "Muhasebe Sorumlusu",
+      "maas": 38000,
+      "iseBaslamaTarihi": "2020-03-01",
+      "telefon": "+905302223344",
+      "sgkNo": "0987654321",
+      "aktif": true,
+      "primOrani": 0.03,
+      "toplamPrim": 8200,
+      "gecGelme": 0,
+      "izinGunu": 3
+    },
+    {
+      "id": "PRS-003",
+      "adSoyad": "Ali Demir",
+      "tc": "11122233344",
+      "pozisyon": "Depo Sorumlusu",
+      "maas": 32000,
+      "iseBaslamaTarihi": "2021-06-10",
+      "telefon": "+905303334455",
+      "sgkNo": "1112223334",
+      "aktif": true,
+      "primOrani": 0.02,
+      "toplamPrim": 4800,
+      "gecGelme": 5,
+      "izinGunu": 8,
+      "uyari": "Sık geç gelme ve izin"
+    },
+    {
+      "id": "PRS-004",
+      "adSoyad": "Fatma Özkan",
+      "tc": "55566677788",
+      "pozisyon": "Satış Danışmanı",
+      "maas": 28000,
+      "iseBaslamaTarihi": "2022-02-01",
+      "telefon": "+905304445566",
+      "sgkNo": "5556667778",
+      "aktif": true,
+      "primOrani": 0.04,
+      "toplamPrim": 6300,
+      "gecGelme": 1,
+      "izinGunu": 2
+    },
+    {
+      "id": "PRS-005",
+      "adSoyad": "Can Arslan",
+      "tc": "99988877766",
+      "pozisyon": "Satış Danışmanı",
+      "maas": 28000,
+      "iseBaslamaTarihi": "2022-04-15",
+      "telefon": "+905305556677",
+      "sgkNo": "9998887776",
+      "aktif": true,
+      "primOrani": 0.04,
+      "toplamPrim": 5100,
+      "gecGelme": 3,
+      "izinGunu": 4
+    },
+    {
+      "id": "PRS-006",
+      "adSoyad": "Zeynep Şahin",
+      "tc": "44433322211",
+      "pozisyon": "Müşteri Hizmetleri",
+      "maas": 26000,
+      "iseBaslamaTarihi": "2023-01-10",
+      "telefon": "+905306667788",
+      "sgkNo": "4443332221",
+      "aktif": true,
+      "primOrani": 0.02,
+      "toplamPrim": 3200,
+      "gecGelme": 0,
+      "izinGunu": 1
+    },
+    {
+      "id": "PRS-007",
+      "adSoyad": "Burak Çelik",
+      "tc": "33322211100",
+      "pozisyon": "Teknik Destek",
+      "maas": 35000,
+      "iseBaslamaTarihi": "2020-09-01",
+      "telefon": "+905307778899",
+      "sgkNo": "3332221110",
+      "aktif": true,
+      "primOrani": 0.03,
+      "toplamPrim": 7500,
+      "gecGelme": 1,
+      "izinGunu": 6
+    },
+    {
+      "id": "PRS-008",
+      "adSoyad": "Elif Aydın",
+      "tc": "22211100099",
+      "pozisyon": "Pazarlama Uzmanı",
+      "maas": 33000,
+      "iseBaslamaTarihi": "2021-11-20",
+      "telefon": "+905308889900",
+      "sgkNo": "2221110009",
+      "aktif": true,
+      "primOrani": 0.03,
+      "toplamPrim": 6800,
+      "gecGelme": 2,
+      "izinGunu": 3
+    }
+  ],
+  "maasOdemeleri": [
+    {
+      "id": "MO-2025-08",
+      "ay": "Ağustos 2025",
+      "toplamMaas": 265000,
+      "toplamPrim": 12400,
+      "sgkIsveren": 45050,
+      "sgkCalisan": 37950,
+      "gelirVergisi": 53000,
+      "netOdeme": 186850,
+      "odemeTarihi": "2025-08-30"
+    },
+    {
+      "id": "MO-2025-09",
+      "ay": "Eylül 2025",
+      "toplamMaas": 265000,
+      "toplamPrim": 13200,
+      "sgkIsveren": 45050,
+      "sgkCalisan": 37950,
+      "gelirVergisi": 55640,
+      "netOdeme": 184610,
+      "odemeTarihi": "2025-09-30"
+    },
+    {
+      "id": "MO-2025-10",
+      "ay": "Ekim 2025",
+      "toplamMaas": 265000,
+      "toplamPrim": 11800,
+      "sgkIsveren": 45050,
+      "sgkCalisan": 37950,
+      "gelirVergisi": 55360,
+      "netOdeme": 183490,
+      "odemeTarihi": "2025-10-30"
+    }
+  ],
+  "avanslar": [
+    {
+      "id": "AVN-001",
+      "personelId": "PRS-001",
+      "personel": "Mehmet Yılmaz",
+      "tutar": 15000,
+      "tarih": "2025-08-10",
+      "aciklama": "Acil ihtiyaç",
+      "kesinti": "3 taksit"
+    },
+    {
+      "id": "AVN-002",
+      "personelId": "PRS-003",
+      "personel": "Ali Demir",
+      "tutar": 10000,
+      "tarih": "2025-09-05",
+      "aciklama": "Kişisel",
+      "kesinti": "2 taksit"
+    },
+    {
+      "id": "AVN-003",
+      "personelId": "PRS-007",
+      "personel": "Burak Çelik",
+      "tutar": 12000,
+      "tarih": "2025-10-15",
+      "aciklama": "Taşınma masrafı",
+      "kesinti": "4 taksit"
+    }
+  ],
+  "sabitGiderler": {
+    "kira": {
+      "ofis": 45000,
+      "depo": 28000,
+      "toplamAylik": 73000
+    },
+    "faturalar": {
+      "elektrik": {"agustos": 8500, "eylul": 9200, "ekim": 8900},
+      "su": {"agustos": 1200, "eylul": 1350, "ekim": 1180},
+      "internet": 2400,
+      "telefon": 3500,
+      "dogalgaz": {"agustos": 0, "eylul": 0, "ekim": 1500}
+    },
+    "yakit": {"agustos": 12000, "eylul": 13500, "ekim": 14200},
+    "bakim": {"agustos": 5500, "eylul": 3200, "ekim": 8900},
+    "muhasebe": 8500,
+    "sigorta": 6500
+  },
+  "vergiler": [
+    {
+      "tip": "KDV",
+      "donem": "Ağustos 2025",
+      "tutar": 85000,
+      "sonOdemeTarihi": "2025-09-26",
+      "durum": "ödendi",
+      "odemeTarihi": "2025-09-20"
+    },
+    {
+      "tip": "Geçici Vergi",
+      "donem": "3. Dönem 2025",
+      "tutar": 142000,
+      "sonOdemeTarihi": "2025-10-17",
+      "durum": "ödendi",
+      "odemeTarihi": "2025-10-15"
+    },
+    {
+      "tip": "SGK",
+      "donem": "Ağustos 2025",
+      "tutar": 83000,
+      "sonOdemeTarihi": "2025-09-30",
+      "durum": "ödendi",
+      "odemeTarihi": "2025-09-28"
+    },
+    {
+      "tip": "SGK",
+      "donem": "Eylül 2025",
+      "tutar": 83000,
+      "sonOdemeTarihi": "2025-10-30",
+      "durum": "ödendi",
+      "odemeTarihi": "2025-10-29"
+    },
+    {
+      "tip": "KDV",
+      "donem": "Eylül 2025",
+      "tutar": 92000,
+      "sonOdemeTarihi": "2025-10-26",
+      "durum": "ödendi",
+      "odemeTarihi": "2025-10-24"
+    },
+    {
+      "tip": "SGK",
+      "donem": "Ekim 2025",
+      "tutar": 83000,
+      "sonOdemeTarihi": "2025-11-30",
+      "durum": "beklemede"
+    },
+    {
+      "tip": "KDV",
+      "donem": "Ekim 2025",
+      "tutar": 88000,
+      "sonOdemeTarihi": "2025-11-26",
+      "durum": "beklemede"
+    }
+  ],
+  "urunPerformans": {
+    "enKotuUrunler": [
+      {"urunAdi": "Grafik Tablet Wacom Intuos Pro L", "satisAdedi": 6, "iadeSayisi": 2, "iadeOrani": 33.3, "karMarji": 19.0},
+      {"urunAdi": "Canon RF 24-70mm f/2.8 L IS", "satisAdedi": 2, "iadeSayisi": 0, "iadeOrani": 0, "karMarji": 16.4}
+    ],
+    "enCokIadeEdilenUrunler": [
+      {"urunAdi": "Microsoft Surface Laptop 5", "satisAdedi": 7, "iadeSayisi": 2, "iadeSebep": "Donanım sorunu"},
+      {"urunAdi": "Grafik Tablet Wacom Intuos Pro L", "satisAdedi": 6, "iadeSayisi": 2, "iadeSebep": "Kullanıcı memnuniyetsizliği"},
+      {"urunAdi": "HP LaserJet Pro MFP M428fdw", "satisAdedi": 4, "iadeSayisi": 1, "iadeSebep": "Baskı kalitesi"}
+    ]
+  },
+  "kampanyalar": [
+    {
+      "id": "KMP-001",
+      "ad": "Yaz Sonu İndirimi",
+      "baslangic": "2025-08-15",
+      "bitis": "2025-08-31",
+      "urunler": ["Gaming Mouse Logitech G502", "Mekanik Klavye Corsair K95"],
+      "indirimOrani": 15,
+      "satilanAdet": 27,
+      "ciro": 78057
+    },
+    {
+      "id": "KMP-002",
+      "ad": "Okul Dönemi Kampanyası",
+      "baslangic": "2025-09-01",
+      "bitis": "2025-09-30",
+      "urunler": ["Dizüstü Bilgisayar Lenovo ThinkPad", "Webcam Logitech C920"],
+      "indirimOrani": 10,
+      "satilanAdet": 43,
+      "ciro": 456000
+    }
+  ],
+  "iadeler": [
+    {
+      "id": "IAD-001",
+      "tarih": "2025-08-25",
+      "faturaId": "FT-2025-XXX",
+      "musteri": "Test Müşteri",
+      "urun": "Microsoft Surface Laptop 5",
+      "adet": 1,
+      "tutar": 38500,
+      "sebep": "Ekran sorunu",
+      "durum": "tamamlandı"
+    },
+    {
+      "id": "IAD-002",
+      "tarih": "2025-09-10",
+      "faturaId": "FT-2025-YYY",
+      "musteri": "Yeşil Mimarlık",
+      "urun": "Grafik Tablet Wacom Intuos Pro L",
+      "adet": 1,
+      "tutar": 12500,
+      "sebep": "Kalem çalışmıyor",
+      "durum": "tamamlandı"
+    },
+    {
+      "id": "IAD-003",
+      "tarih": "2025-10-05",
+      "faturaId": "FT-2025-ZZZ",
+      "musteri": "Altın Ofis Mobilya",
+      "urun": "HP LaserJet Pro MFP M428fdw",
+      "adet": 1,
+      "tutar": 18500,
+      "sebep": "Baskı kalitesi düşük",
+      "durum": "işlemde"
+    }
+  ],
+  "krediKartOdemeleri": [
+    {
+      "banka": "İş Bankası",
+      "kartTipi": "Kurumsal Kredi Kartı",
+      "limit": 250000,
+      "kullanilan": 145000,
+      "sonOdemeTarihi": "2025-11-15",
+      "minimumOdeme": 14500,
+      "durum": "aktif"
+    },
+    {
+      "banka": "Garanti BBVA",
+      "kartTipi": "Kurumsal Kredi Kartı",
+      "limit": 150000,
+      "kullanilan": 85000,
+      "sonOdemeTarihi": "2025-11-20",
+      "minimumOdeme": 8500,
+      "durum": "aktif"
+    }
+  ]
+}

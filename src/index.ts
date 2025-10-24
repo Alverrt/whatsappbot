@@ -1,14 +1,14 @@
 import express, { Request, Response } from 'express';
 import { config } from './config';
 import { WhatsAppClient } from './whatsappClient';
-import { ChatGPTService } from './chatgptService';
+import { AIAgent } from './aiAgent';
 import { AudioService } from './audioService';
 
 const app = express();
 app.use(express.json());
 
 const whatsappClient = new WhatsAppClient();
-const chatgptService = new ChatGPTService();
+const aiAgent = new AIAgent();
 const audioService = new AudioService();
 
 // Webhook verification endpoint (GET)
@@ -91,10 +91,10 @@ app.post('/webhook', async (req: Request, res: Response) => {
                   continue;
                 }
 
-                // Get ChatGPT response for the text (either from text message or transcribed audio)
+                // Get AI Agent response for the text (either from text message or transcribed audio)
                 if (messageText && messageText.trim() !== '') {
-                  const chatgptResponse = await chatgptService.getResponse(from, messageText);
-                  await whatsappClient.sendMessage(from, chatgptResponse);
+                  const agentResponse = await aiAgent.processMessage(from, messageText);
+                  await whatsappClient.sendMessage(from, agentResponse);
                 }
               }
             }

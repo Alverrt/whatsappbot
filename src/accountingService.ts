@@ -543,4 +543,337 @@ ${result}
 *Toplam Ciro: ${this.formatCurrency(toplamCiro)}*
     `.trim();
   }
+
+  // NEW EXPANDED METHODS
+
+  getCustomerDetails(customerName?: string): string {
+    const musteriler = this.data.musteriler || [];
+
+    let filtered = customerName
+      ? musteriler.filter((m: any) => m.ad.toLowerCase().includes(customerName.toLowerCase()))
+      : musteriler;
+
+    if (filtered.length === 0) {
+      return '❌ Müşteri bulunamadı.';
+    }
+
+    const result = filtered.slice(0, 5).map((m: any) =>
+      `👤 *${m.ad}*\n` +
+      `   Yetkili: ${m.yetkili}\n` +
+      `   Telefon: ${m.telefon}\n` +
+      `   Vade: ${m.vadeGunu} gün\n` +
+      `   Kredi Limiti: ${this.formatCurrency(m.krediLimiti)}\n` +
+      `   Risk Skoru: ${m.riskSkoru}\n` +
+      `   Toplam Alışveriş: ${this.formatCurrency(m.toplamAlisveris)}\n` +
+      `   Ortalama Gecikme: ${m.ortalamaGecikmeSuresi} gün\n` +
+      (m.uyari ? `   ⚠️ ${m.uyari}\n` : '')
+    ).join('\n');
+
+    return `💼 *Müşteri Detayları*\n\n${result}`;
+  }
+
+  getCollections(paymentType?: string): string {
+    const tahsilatlar = this.data.tahsilatlar || [];
+
+    let filtered = tahsilatlar;
+    if (paymentType && paymentType !== 'tümü') {
+      filtered = tahsilatlar.filter((t: any) => t.odemeTipi === paymentType);
+    }
+
+    if (filtered.length === 0) {
+      return 'Bu kriterde tahsilat bulunamadı.';
+    }
+
+    const toplam = filtered.reduce((sum: number, t: any) => sum + t.tutar, 0);
+
+    const result = filtered.slice(0, 10).map((t: any) => {
+      let detay = `💰 ${new Date(t.tarih).toLocaleDateString('tr-TR')}\n`;
+      detay += `   Fatura: ${t.faturaId}\n`;
+      detay += `   Müşteri: ${t.musteri}\n`;
+      detay += `   Tutar: ${this.formatCurrency(t.tutar)}\n`;
+      detay += `   Tip: ${t.odemeTipi}\n`;
+
+      if (t.cekVadesi) detay += `   Çek Vadesi: ${new Date(t.cekVadesi).toLocaleDateString('tr-TR')}\n`;
+      if (t.cekNo) detay += `   Çek No: ${t.cekNo}\n`;
+      if (t.banka) detay += `   Banka: ${t.banka}\n`;
+      if (t.taksitSayisi) detay += `   Taksit: ${t.taksitSayisi}\n`;
+      if (t.senetVadesi) detay += `   Senet Vadesi: ${new Date(t.senetVadesi).toLocaleDateString('tr-TR')}\n`;
+
+      return detay;
+    }).join('\n');
+
+    return `💵 *Tahsilatlar* ${paymentType && paymentType !== 'tümü' ? `(${paymentType})` : ''}\n\n${result}\n*Toplam: ${this.formatCurrency(toplam)}*`;
+  }
+
+  getPurchaseInvoices(): string {
+    const alislar = this.data.alisFaturalari || [];
+
+    if (alislar.length === 0) {
+      return 'Alış faturası bulunamadı.';
+    }
+
+    const result = alislar.map((a: any) => {
+      const durum = a.durum === 'ödendi' ? '✅' : a.durum === 'kısmi_ödendi' ? '🔄' : '⏳';
+      return `${durum} *${a.id}*\n` +
+             `   Tarih: ${new Date(a.tarih).toLocaleDateString('tr-TR')}\n` +
+             `   Tedarikçi: ${a.tedarikci}\n` +
+             `   Tutar: ${this.formatCurrency(a.genelToplam)}\n` +
+             `   Durum: ${a.durum}` +
+             (a.kalanBorc ? `\n   Kalan: ${this.formatCurrency(a.kalanBorc)}` : '');
+    }).join('\n\n');
+
+    return `📦 *Alış Faturaları*\n\n${result}`;
+  }
+
+  getProductProfitMargin(productName?: string): string {
+    const alislar = this.data.alisFaturalari || [];
+    const stoklar = this.data.stok || [];
+
+    const karMarjlari: any[] = [];
+
+    alislar.forEach((alis: any) => {
+      alis.urunler?.forEach((urun: any) => {
+        if (!productName || urun.ad.toLowerCase().includes(productName.toLowerCase())) {
+          const stok = stoklar.find((s: any) => s.urunAdi === urun.ad);
+          if (stok) {
+            const alisFiyat = urun.birimMaliyet || urun.satisFiyati * 0.8;
+            const satisFiyat = urun.satisFiyati || stok.satisFiyati;
+            const kar = satisFiyat - alisFiyat;
+            const marj = ((kar / satisFiyat) * 100).toFixed(2);
+
+            karMarjlari.push({
+              urun: urun.ad,
+              alisFiyat,
+              satisFiyat,
+              kar,
+              marj
+            });
+          }
+        }
+      });
+    });
+
+    if (karMarjlari.length === 0) {
+      return 'Kar marjı bilgisi bulunamadı.';
+    }
+
+    const result = karMarjlari.slice(0, 10).map((k: any) =>
+      `📊 *${k.urun}*\n` +
+      `   Alış: ${this.formatCurrency(k.alisFiyat)}\n` +
+      `   Satış: ${this.formatCurrency(k.satisFiyat)}\n` +
+      `   Kar: ${this.formatCurrency(k.kar)} (%${k.marj})`
+    ).join('\n\n');
+
+    return `💹 *Ürün Kar Marjları*\n\n${result}`;
+  }
+
+  getPersonnelList(): string {
+    const personel = this.data.personel || [];
+
+    if (personel.length === 0) {
+      return 'Personel kaydı bulunamadı.';
+    }
+
+    const result = personel.filter((p: any) => p.aktif).map((p: any) =>
+      `👤 *${p.adSoyad}*\n` +
+      `   Pozisyon: ${p.pozisyon}\n` +
+      `   Maaş: ${this.formatCurrency(p.maas)}\n` +
+      `   İşe Başlama: ${new Date(p.iseBaslamaTarihi).toLocaleDateString('tr-TR')}\n` +
+      (p.uyari ? `   ⚠️ ${p.uyari}` : '')
+    ).join('\n\n');
+
+    return `👥 *Personel Listesi*\n\n${result}`;
+  }
+
+  getSalaryPayments(month?: string): string {
+    const maaslar = this.data.maasOdemeleri || [];
+
+    let filtered = maaslar;
+    if (month) {
+      const ayMap: { [key: string]: string } = {
+        'ağustos': 'Ağustos 2025',
+        'eylül': 'Eylül 2025',
+        'ekim': 'Ekim 2025'
+      };
+      const ayAdi = ayMap[month.toLowerCase()];
+      if (ayAdi) {
+        filtered = maaslar.filter((m: any) => m.ay === ayAdi);
+      }
+    }
+
+    if (filtered.length === 0) {
+      return 'Maaş kaydı bulunamadı.';
+    }
+
+    const result = filtered.map((m: any) =>
+      `💼 *${m.ay}*\n` +
+      `   Toplam Maaş: ${this.formatCurrency(m.toplamMaas)}\n` +
+      `   SGK İşveren: ${this.formatCurrency(m.sgkIsveren)}\n` +
+      `   Gelir Vergisi: ${this.formatCurrency(m.gelirVergisi)}\n` +
+      `   Net Ödeme: ${this.formatCurrency(m.netOdeme)}`
+    ).join('\n\n');
+
+    return `💰 *Maaş Ödemeleri*\n\n${result}`;
+  }
+
+  getAdvances(): string {
+    const avanslar = this.data.avanslar || [];
+
+    if (avanslar.length === 0) {
+      return 'Avans kaydı yok.';
+    }
+
+    const toplam = avanslar.reduce((sum: number, a: any) => sum + a.tutar, 0);
+
+    const result = avanslar.map((a: any) =>
+      `💵 ${a.personel}\n` +
+      `   Tutar: ${this.formatCurrency(a.tutar)}\n` +
+      `   Tarih: ${new Date(a.tarih).toLocaleDateString('tr-TR')}\n` +
+      `   ${a.aciklama}`
+    ).join('\n\n');
+
+    return `💸 *Personel Avansları*\n\n${result}\n\n*Toplam: ${this.formatCurrency(toplam)}*`;
+  }
+
+  getAttendanceIssues(): string {
+    const personel = this.data.personel || [];
+
+    const sorunlu = personel.filter((p: any) =>
+      p.aktif && (p.gecGelme > 3 || p.izinGunu > 7)
+    );
+
+    if (sorunlu.length === 0) {
+      return '✅ Devamsızlık sorunu olan personel yok.';
+    }
+
+    const result = sorunlu.map((p: any) =>
+      `⚠️ *${p.adSoyad}*\n` +
+      `   Pozisyon: ${p.pozisyon}\n` +
+      `   Geç Gelme: ${p.gecGelme} kez\n` +
+      `   İzin Günü: ${p.izinGunu} gün\n` +
+      (p.uyari ? `   ⚠️ ${p.uyari}` : '')
+    ).join('\n\n');
+
+    return `📋 *Devamsızlık Problemleri*\n\n${result}`;
+  }
+
+  getFixedExpenses(month?: string): string {
+    const sabitler = this.data.sabitGiderler || {};
+
+    let result = `🏢 *Sabit Giderler*\n\n`;
+    result += `Kira: ${this.formatCurrency(sabitler.kira || 0)}\n`;
+    result += `Elektrik: ${this.formatCurrency(sabitler.elektrik || 0)}\n`;
+    result += `İnternet: ${this.formatCurrency(sabitler.internet || 0)}\n`;
+    result += `Muhasebe: ${this.formatCurrency(sabitler.muhasebe || 0)}\n`;
+
+    const toplam = (sabitler.kira || 0) + (sabitler.elektrik || 0) +
+                   (sabitler.internet || 0) + (sabitler.muhasebe || 0);
+
+    result += `\n*Toplam: ${this.formatCurrency(toplam)}*`;
+
+    return result;
+  }
+
+  getTaxPayments(status?: string): string {
+    const vergiler = this.data.vergiler || [];
+
+    let filtered = vergiler;
+    if (status && status !== 'tümü') {
+      filtered = vergiler.filter((v: any) => v.durum === status);
+    }
+
+    if (filtered.length === 0) {
+      return 'Vergi kaydı bulunamadı.';
+    }
+
+    const toplam = filtered.reduce((sum: number, v: any) => sum + v.tutar, 0);
+
+    const result = filtered.map((v: any) => {
+      const durum = v.durum === 'ödendi' ? '✅' : '⏳';
+      return `${durum} *${v.tip}* - ${v.donem}\n` +
+             `   Tutar: ${this.formatCurrency(v.tutar)}\n` +
+             (v.odemeTarihi ? `   Ödeme: ${new Date(v.odemeTarihi).toLocaleDateString('tr-TR')}` :
+              `   Son Ödeme: ${new Date(v.sonOdemeTarihi).toLocaleDateString('tr-TR')}`);
+    }).join('\n\n');
+
+    return `🏛️ *Vergiler*\n\n${result}\n\n*Toplam: ${this.formatCurrency(toplam)}*`;
+  }
+
+  getProductPerformance(): string {
+    const iadeler = this.data.iadeler || [];
+
+    if (iadeler.length === 0) {
+      return 'İade kaydı yok.';
+    }
+
+    const result = iadeler.map((i: any) =>
+      `❌ ${i.urun}\n` +
+      `   Tutar: ${this.formatCurrency(i.tutar)}\n` +
+      `   Sebep: ${i.sebep}\n` +
+      `   Tarih: ${new Date(i.tarih).toLocaleDateString('tr-TR')}`
+    ).join('\n\n');
+
+    return `📊 *Ürün Performansı (İadeler)*\n\n${result}`;
+  }
+
+  getCampaigns(): string {
+    const kampanyalar = this.data.kampanyalar || [];
+
+    if (kampanyalar.length === 0) {
+      return 'Aktif kampanya yok.';
+    }
+
+    const result = kampanyalar.map((k: any) =>
+      `🎯 *${k.ad}*\n` +
+      `   Tarih: ${new Date(k.baslangic).toLocaleDateString('tr-TR')} - ${new Date(k.bitis).toLocaleDateString('tr-TR')}\n` +
+      `   Satılan: ${k.satilanAdet} adet\n` +
+      `   Ciro: ${this.formatCurrency(k.ciro)}`
+    ).join('\n\n');
+
+    return `🎁 *Kampanyalar*\n\n${result}`;
+  }
+
+  getReturns(): string {
+    const iadeler = this.data.iadeler || [];
+
+    if (iadeler.length === 0) {
+      return '✅ İade kaydı yok.';
+    }
+
+    const toplam = iadeler.reduce((sum: number, i: any) => sum + i.tutar, 0);
+
+    const result = iadeler.map((i: any) =>
+      `🔄 ${i.urun}\n` +
+      `   Tutar: ${this.formatCurrency(i.tutar)}\n` +
+      `   Sebep: ${i.sebep}\n` +
+      `   Durum: ${i.durum}\n` +
+      `   Tarih: ${new Date(i.tarih).toLocaleDateString('tr-TR')}`
+    ).join('\n\n');
+
+    return `📦 *İadeler*\n\n${result}\n\n*Toplam: ${this.formatCurrency(toplam)}*`;
+  }
+
+  getCreditCardDebts(): string {
+    const kartlar = this.data.krediKartlari || [];
+
+    if (kartlar.length === 0) {
+      return 'Kredi kartı kaydı yok.';
+    }
+
+    const toplamLimit = kartlar.reduce((sum: number, k: any) => sum + k.limit, 0);
+    const toplamKullanilan = kartlar.reduce((sum: number, k: any) => sum + k.kullanilan, 0);
+
+    const result = kartlar.map((k: any) => {
+      const kullanimOrani = ((k.kullanilan / k.limit) * 100).toFixed(1);
+      return `💳 *${k.banka}*\n` +
+             `   Limit: ${this.formatCurrency(k.limit)}\n` +
+             `   Kullanılan: ${this.formatCurrency(k.kullanilan)} (%${kullanimOrani})\n` +
+             `   Kalan: ${this.formatCurrency(k.limit - k.kullanilan)}\n` +
+             `   Son Ödeme: ${new Date(k.sonOdemeTarihi).toLocaleDateString('tr-TR')}`;
+    }).join('\n\n');
+
+    return `💳 *Kredi Kartları*\n\n${result}\n\n` +
+           `*Toplam Limit: ${this.formatCurrency(toplamLimit)}*\n` +
+           `*Toplam Kullanılan: ${this.formatCurrency(toplamKullanilan)}*`;
+  }
 }
