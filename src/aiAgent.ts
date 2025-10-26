@@ -5,9 +5,10 @@ import { ChatCompletionMessageParam, ChatCompletionTool } from 'openai/resources
 
 export class AIAgent {
   private openai: OpenAI;
-  private conversationHistory: Map<string, { messages: ChatCompletionMessageParam[]; lastActivity: number }>;
+  private conversationHistory: ChatCompletionMessageParam[];
+  private lastActivity: number;
   private accountingService: AccountingService;
-  private readonly SESSION_TIMEOUT = 3 * 60 * 1000; // 3 dakika
+  private readonly SESSION_TIMEOUT = 5 * 60 * 1000; // 5 minutes
 
   // Define all available functions/tools
   private tools: ChatCompletionTool[] = [
@@ -333,36 +334,22 @@ export class AIAgent {
     this.openai = new OpenAI({
       apiKey: config.openai.apiKey,
     });
-    this.conversationHistory = new Map();
+    this.conversationHistory = [];
+    this.lastActivity = 0;
     this.accountingService = new AccountingService();
-
-    // Cleanup old sessions every minute
-    setInterval(() => this.cleanupOldSessions(), 60 * 1000);
-  }
-
-  private cleanupOldSessions(): void {
-    const now = Date.now();
-    for (const [userId, session] of this.conversationHistory.entries()) {
-      if (now - session.lastActivity > this.SESSION_TIMEOUT) {
-        this.conversationHistory.delete(userId);
-        console.log(`Session expired for user: ${userId}`);
-      }
-    }
   }
 
   async processMessage(userId: string, message: string): Promise<string> {
     try {
       const now = Date.now();
-      let session = this.conversationHistory.get(userId);
 
-      // Initialize or reset session if expired
-      if (!session || (now - session.lastActivity > this.SESSION_TIMEOUT)) {
+      // Reset session if expired or empty
+      if (this.conversationHistory.length === 0 || (now - this.lastActivity > this.SESSION_TIMEOUT)) {
         const accountingContext = this.accountingService.getDataContext();
-        session = {
-          messages: [
-            {
-              role: 'system',
-              content: `Sen Tekno Elektronik Ticaret Ltd. Şti. firmasının AI muhasebe asistanısın. WhatsApp üzerinden işletme sahiplerine muhasebe verileri hakkında bilgi veriyorsun.
+        this.conversationHistory = [
+          {
+            role: 'system',
+            content: `Sen Tekno Elektronik Ticaret Ltd. Şti. firmasının AI muhasebe asistanısın. WhatsApp üzerinden işletme sahiplerine muhasebe verileri hakkında bilgi veriyorsun.
 
 GÖREVLER:
 - Kullanıcıların faturalar, stok, alacaklar, borçlar, personel, vergiler ve tüm finansal veriler hakkındaki sorularını yanıtla
@@ -381,18 +368,16 @@ Kullanıcıya cevap verirken:
 - Sayıları Türk Lirası formatında göster
 
 Firma Özeti: ${accountingContext}`,
-            },
-          ],
-          lastActivity: now,
-        };
-        this.conversationHistory.set(userId, session);
+          },
+        ];
+        console.log('Session reset - starting fresh conversation');
       }
 
       // Update last activity
-      session.lastActivity = now;
+      this.lastActivity = now;
 
       // Add user message
-      session.messages.push({
+      this.conversationHistory.push({
         role: 'user',
         content: message,
       });
@@ -400,14 +385,14 @@ Firma Özeti: ${accountingContext}`,
       // Call OpenAI with function calling (Agent mode)
       let response = await this.openai.chat.completions.create({
         model: 'gpt-4o-mini',
-        messages: session.messages,
+        messages: this.conversationHistory,
         tools: this.tools,
         tool_choice: 'auto', // Let AI decide when to call functions
         max_tokens: 1500,
       });
 
       let assistantMessage = response.choices[0].message;
-      session.messages.push(assistantMessage);
+      this.conversationHistory.push(assistantMessage);
 
       // Handle function calls (multi-step agent)
       const maxIterations = 5; // Prevent infinite loops
@@ -427,7 +412,7 @@ Firma Özeti: ${accountingContext}`,
             const functionResult = await this.executeFunction(functionName, functionArgs);
 
             // Add function result to conversation
-            session.messages.push({
+            this.conversationHistory.push({
               role: 'tool',
               tool_call_id: toolCall.id,
               content: functionResult,
@@ -438,22 +423,20 @@ Firma Özeti: ${accountingContext}`,
         // Get next response from AI
         response = await this.openai.chat.completions.create({
           model: 'gpt-4o-mini',
-          messages: session.messages,
+          messages: this.conversationHistory,
           tools: this.tools,
           tool_choice: 'auto',
           max_tokens: 1500,
         });
 
         assistantMessage = response.choices[0].message;
-        session.messages.push(assistantMessage);
+        this.conversationHistory.push(assistantMessage);
       }
 
       // Keep only last 20 messages
-      if (session.messages.length > 21) {
-        session.messages = [session.messages[0], ...session.messages.slice(-20)];
+      if (this.conversationHistory.length > 21) {
+        this.conversationHistory = [this.conversationHistory[0], ...this.conversationHistory.slice(-20)];
       }
-
-      this.conversationHistory.set(userId, session);
 
       return assistantMessage.content || 'Üzgünüm, bir yanıt oluşturamadım.';
     } catch (error) {
@@ -559,8 +542,4 @@ Firma Özeti: ${accountingContext}`,
     }
   }
 
-  clearHistory(userId: string): void {
-    this.conversationHistory.delete(userId);
-    console.log(`Conversation history cleared for user: ${userId}`);
-  }
 }
